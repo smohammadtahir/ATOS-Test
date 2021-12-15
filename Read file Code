@@ -1,18 +1,19 @@
 import os
 import pandas as pd
-from numpy.lib.shape_base import split
-df = pd.DataFrame(columns = ['Source IP', 'Enviroment'])
+from numpy.lib.shape_base import split 
 
-dict = {}
-path  = "/content/sample_data/Engineering Test Files"
-for file in os.listdir(path):
-  if file.endswith('.csv') or file.endswith('.CSV'):
-    read_file = pd.read_csv(path + '/' + file,  usecols = ["Source IP"] , dtype = str)
-    fileName = file.split()[0] + ' '+  file.split()[1].replace('.csv', '')
-    for i in read_file:
-      dict['Source IP'] = read_file[i]
-      dict['Enviroment'] = fileName
-    df = df.append(pd.DataFrame.from_dict(dict), ignore_index= True)
-    #print(read_file)
-    
-print(df)
+def ReadDirFile():
+  df = pd.DataFrame(columns = ['Source IP', 'Enviroment']) # Create a Blank Dataframe
+  dict = {}
+  path  = Dirpath     # Path of the Directory
+  for file in os.listdir(path):                             # pick the files from Directory one by one
+    if file.endswith('.csv') or file.endswith('.CSV'):      # Check the format of the file as only .csv
+      read_file = pd.read_csv(path + '/' + file,  usecols = ["Source IP"] , dtype = str)  # Read the csv file  
+      fileName = file.split()[0] + ' '+  file.split()[1].replace('.csv', '')    # Split the file name as required for Enviroment column 
+      for i in read_file:                                   # Traverse into dataframe where the file data is residing
+        dict['Source IP'] = read_file[i]                    # Store the 'Source IP' column data into Dict  Source IP Key
+        dict['Enviroment'] = fileName                       # Store the 'fileName' column data into Dict   Enviroment key
+      df = df.append(pd.DataFrame.from_dict(dict), ignore_index= True)  # Convert the Dict into Dataframe and append into df 
+ 
+
+
