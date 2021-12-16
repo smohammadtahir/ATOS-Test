@@ -2,10 +2,10 @@ import os
 import pandas as pd
 from numpy.lib.shape_base import split 
 
-def ReadDirFile():
+def ReadDirFile(DirPath):      # Pass the Directory path to the function
   df = pd.DataFrame(columns = ['Source IP', 'Enviroment']) # Create a Blank Dataframe
   dict = {}
-  path  = Dirpath     # Path of the Directory
+  path  =   DirPath   # Path of the Directory
   for file in os.listdir(path):                             # pick the files from Directory one by one
     if file.endswith('.csv') or file.endswith('.CSV'):      # Check the format of the file as only .csv
       read_file = pd.read_csv(path + '/' + file,  usecols = ["Source IP"] , dtype = str)  # Read the csv file  
@@ -14,6 +14,4 @@ def ReadDirFile():
         dict['Source IP'] = read_file[i]                    # Store the 'Source IP' column data into Dict  Source IP Key
         dict['Enviroment'] = fileName                       # Store the 'fileName' column data into Dict   Enviroment key
       df = df.append(pd.DataFrame.from_dict(dict), ignore_index= True)  # Convert the Dict into Dataframe and append into df 
- 
-
-
+  df.to_csv(DirPath + '/' + 'combined.csv', index=False )   # Convert the Dataframe into csv and Save into the directory
