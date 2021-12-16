@@ -15,4 +15,6 @@ def ReadDirFile(DirPath):      # Pass the Directory path to the function
         dict['Enviroment'] = fileName.replace('.csv', '')                       # Store the 'fileName' column data into Dict   Enviroment key
       df = df.append(pd.DataFrame.from_dict(dict), ignore_index= True)  # Convert the Dict into Dataframe and append into df 
   df.to_csv(DirPath + '/' + 'combined.csv', index=False )   # Convert the Dataframe into csv and Save into the directory
-  
+
+Path = '/content/sample_data/Test' # Provide the path of Directory in Variable
+ReadDirFile(Path)                  # Call the Function 
