@@ -1,11 +1,10 @@
 import unittest
+import os.path
+from os import path
 
+Path = '/content/sample_data/Test'
 class TestFunction(unittest.TestCase):
 
     def test_path(self):
-
-      if not(ReadDirFile('/content/sample_data/Test') ):
+      if not path.exists(Path):
         raise FileNotFoundError('No such or directory found')
-        
-      
-
