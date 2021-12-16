@@ -1,0 +1,11 @@
+import unittest
+
+class TestFunction(unittest.TestCase):
+
+    def test_path(self):
+
+      if not(ReadDirFile('/content/sample_data/Test') ):
+        raise FileNotFoundError('No such or directory found')
+        
+      
+
