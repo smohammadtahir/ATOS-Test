@@ -7,7 +7,7 @@ def ReadDirFile(DirPath):      # Pass the Directory path to the function
   dict = {}
   path  =   DirPath   # Path of the Directory
   for file in os.listdir(path):                             # pick the files from Directory one by one
-    if file.endswith('.csv') or file.endswith('.CSV'):      # Check the format of the file as only .csv
+    if (file.endswith('.csv') or file.endswith('.CSV')) and not(file.startswith('combined')):      # Check the format of the file as only .csv
       read_file = pd.read_csv(path + '/' + file,  usecols = ["Source IP"] , dtype = str)  # Read the csv file  
       fileName = file.split()[0] + ' Prod'   # Split the file name as required for Enviroment column 
       for i in read_file:                                   # Traverse into dataframe where the file data is residing
